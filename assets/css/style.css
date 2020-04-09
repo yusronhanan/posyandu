@@ -46,6 +46,12 @@
 
 .pagination a:hover:not(#pagination-active) {background-color: #ddd;}
 
+/* lg home nav  */
+
+.lg_home{
+  text-decoration: none;
+}
+
 /* line 1, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_extends.scss */
 .btn_1, .btn_2, .regervation_part .btn_2:hover {
   background-image: -webkit-linear-gradient(to right, #649bff, #0070fa, #649bff);

@@ -5,7 +5,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
-                            <h2>Articles</h2>
+                            <h2><?php if($lg == "en") {echo "Articles";} else { echo "Artikel";} ?></h2>
                         </div>
                     </div>
                 </div>
@@ -36,9 +36,9 @@
 
                             <div class="blog_details">
                                 <a class="d-inline-block" href="<?php echo base_url() ?>index.php/home/article/<?php echo $r->id_article?>">
-                                    <h2><?php echo $r->title?></h2>
+                                    <h2><?php if($lg == "en") {echo $r->title_en;} else { echo $r->title;} ?></h2>
                                 </a>
-                                <p><?php echo substr("$r->content",0,250)?>... <a href="<?php echo base_url() ?>index.php/home/article/<?php echo $r->id_article?>">See More </a></p>
+                                <p><?php if($lg == "en") {echo substr("$r->content_en",0,250);} else { echo substr("$r->content",0,250);} ?>... <a href="<?php echo base_url() ?>index.php/home/article/<?php echo $r->id_article?>">See More </a></p>
                                 
                                 
                             </div>
@@ -79,16 +79,16 @@
                             
                                 <div class="form-group">
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder='Search Keyword'
+                                        <input type="text" class="form-control" placeholder='<?php if($lg == "en") {echo "Search Keyword";} else { echo "Masukkan Kata Kunci";} ?>'
                                             onfocus="this.placeholder = ''"
-                                            onblur="this.placeholder = 'Search Keyword'" name="keyword" value="<?php if(!empty($keyword)) { echo $keyword;}?>">
+                                            onblur="this.placeholder = '<?php if($lg == 'en') {echo 'Search Keyword';} else { echo 'Masukkan Kata Kunci';} ?>'" name="keyword" value="<?php if(!empty($keyword)) { echo $keyword;}?>">
                                         <div class="input-group-append">
                                             <button class="btn" type="submit"><i class="ti-search"></i></button>
                                         </div>
                                     </div>
                                 </div>
                                 <input class="button rounded-0 primary-bg text-white w-100 btn_1"
-                                    type="submit" name="submit" value="Search">
+                                    type="submit" name="submit" value="<?php if($lg == "en") {echo "Search";} else { echo "Mencari";} ?>">
                             </form>
                         </aside>
 

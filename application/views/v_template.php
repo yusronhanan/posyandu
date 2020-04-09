@@ -46,18 +46,24 @@
                             id="navbarSupportedContent">
                             <ul class="navbar-nav align-items-center">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="<?php echo base_url() ?>">Home</a>
+                                    <a class="nav-link" href="<?php echo base_url() ?>"><?php if($lg == "en") {echo 'Home';} else { echo 'Beranda';} ?></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?php echo base_url() ?>index.php/home/schedule">Schedule</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="<?php echo base_url() ?>index.php/home/articles">Articles</a>
+                                    <a class="nav-link" href="<?php echo base_url() ?>index.php/home/schedule"><?php if($lg == "en") {echo 'Schedule';} else { echo 'Jadwal';} ?></a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?php echo base_url() ?>index.php/home/#aboutus">About Us</a>
+                                    <a class="nav-link" href="<?php echo base_url() ?>index.php/home/articles"><?php if($lg == "en") {echo 'Articles';} else { echo 'Artikel';} ?></a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?php echo base_url() ?>index.php/home/#aboutus"><?php if($lg == "en") {echo 'About Us';} else { echo 'Tentang Kami';} ?></a>
+                                </li>
+                                <li class="nav-item">
+                                    <?php if($lg == "en") {echo 'Language';} else { echo 'Bahasa';} ?>
+                                    &ensp;
+                                <!--<a class="nav-link" href="#"> </a> -->
+                                <a class="lg_home" href="<?php echo base_url() ?>index.php/home/lg/id">ID</a> | <a class="lg_home" href="<?php echo base_url() ?>index.php/home/lg/en">EN</a> 
                                 </li>
                                 
                                 <!-- <li class="nav-item dropdown">
@@ -104,7 +110,7 @@
                 <div class="row justify-content-between">
                     <div class="col-xl-2 col-md-4 col-sm-6 single-footer-widget">
                         <a href="<?php echo base_url() ?>" class="footer_logo"> <img src="<?php echo base_url() ?>assets/img/ASSET 3 - LOGO.png" alt="logo" width="40px" height = "40px"> </a>
-                        <p>Citrakara <br> We serve by love. </p>
+                        <p>Citrakara <br> <?php if($lg == "en") {echo 'We serve by love.';} else { echo 'Kami melayani dengan cinta.';} ?> </p>
                         <div class="social_logo">
                             <!-- <a href="<?php echo base_url() ?>assets/#"><i class="ti-facebook"></i></a> -->
                             <!-- <a href="<?php echo base_url() ?>assets/#"> <i class="ti-twitter"></i> </a> -->

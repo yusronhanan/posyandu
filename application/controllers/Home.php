@@ -4,9 +4,40 @@ class Home extends CI_Controller {
    public function __construct(){
       parent::__construct();
 		$this->load->model('m_data');
-   }
 
+		if(empty($this->session->userdata('lg'))){
+
+			$array = array(
+				'lg' => 'id'
+			);
+			$this->session->set_userdata( $array );
+			
+		}
+   }
+   public function lg(){
+	   	$language = $this->uri->segment(3);
+		if($language == "id" || $language = "en"){
+			// $this->session->sess_destroy();
+
+			// $array = array(
+			// 	'lg' => $language
+			// );
+			// $this->session->set_userdata( $array );
+			$array = array(
+				'lg' => $language
+			);
+			$this->session->set_userdata( $array );
+			
+			redirect($_SERVER['HTTP_REFERER']);
+			
+		}	
+	  
+   }
    public function index(){
+		$language = $this->session->userdata('lg');
+		
+		$data['lg'] = $language;
+
 		$data['rs'] = $this->m_data->get_listArticles_home();
 		$data['title'] = 'Home';
 		$data['main_view'] = 'v_home';
@@ -28,6 +59,11 @@ class Home extends CI_Controller {
 		$this->load->view('v_template',$data);
    }
    public function articles(){
+
+	$language = $this->session->userdata('lg');
+		
+		$data['lg'] = $language;
+
 	$limit = 4;
 	$start = $this->uri->segment(3);
 	if(empty($start)){
@@ -78,6 +114,11 @@ class Home extends CI_Controller {
 	$this->load->view('v_template',$data);
 	}
 	public function schedule(){
+
+		$language = $this->session->userdata('lg');
+		
+		$data['lg'] = $language;
+
 		$data['ar'] = $this->m_data->get_listArticles_home();
 
 		$name = $this->input->get('name');
@@ -112,15 +153,48 @@ class Home extends CI_Controller {
 		$height = $this->input->get('height');
 			if(!empty($head)){
 				$data['head_size'] = $head;
-				$data['head_status'] = $this->m_data->statusHead($head,$age_inmonth);
+
+				if($language != "en"){
+					if($this->m_data->statusHead($head,$age_inmonth) == "Big"){
+						$data['head_status'] = "Besar" ;
+					} else if($this->m_data->statusHead($head,$age_inmonth) == "Small"){
+						$data['head_status'] = "Kecil" ;
+					} else{
+						$data['head_status'] = $this->m_data->statusHead($head,$age_inmonth);
+					}
+				} else{
+					$data['head_status'] = $this->m_data->statusHead($head,$age_inmonth);
+				}
 			}
 			if(!empty($weight)){
 				$data['weight_size'] = $weight;
-				$data['weight_status'] = $this->m_data->statusWeight($weight,$gender,$age_inmonth);
+
+				if($language != "en"){
+					if($this->m_data->statusWeight($weight,$gender,$age_inmonth) == "Obese"){
+						$data['weight_status'] = "Obesitas" ;
+					} else if($this->m_data->statusWeight($weight,$gender,$age_inmonth) == "Malnutrition"){
+						$data['weight_status'] = "Kekurangan Gizi" ;
+					} else{
+						$data['weight_status'] = $this->m_data->statusWeight($weight,$gender,$age_inmonth);
+	
+					}
+				} else{
+					$data['weight_status'] = $this->m_data->statusWeight($weight,$gender,$age_inmonth);
+				}
 			}
 			if(!empty($height)){
 				$data['height_size'] = $height;
-				$data['height_status'] = $this->m_data->statusHeight($height,$gender,$age_inmonth);
+				if($language != "en"){
+					if($this->m_data->statusHeight($height,$gender,$age_inmonth) == "Tall"){
+						$data['height_status'] = "Tinggi" ;
+					} else if($this->m_data->statusHeight($height,$gender,$age_inmonth) == "Short"){
+						$data['height_status'] = "Pendek" ;
+					} else{
+						$data['height_status'] = $this->m_data->statusHeight($height,$gender,$age_inmonth);
+					}
+				} else{
+					$data['height_status'] = $this->m_data->statusHeight($height,$gender,$age_inmonth);
+				}
 			}
 		}
 		$data['title'] = 'Schedule';
@@ -133,6 +207,10 @@ class Home extends CI_Controller {
 
 //detail article
 public function article(){
+	$language = $this->session->userdata('lg');
+		
+		$data['lg'] = $language;
+
 	$id_article = $this->uri->segment(3);
 	$data['title'] = 'Article';
 	$data['rs'] = $this->m_data->get_article($id_article);
@@ -140,18 +218,5 @@ public function article(){
 	$this->load->view('v_template',$data);
 }
 
-// public function aboutus(){
-// 	$data['title'] = 'About Us';
-// 	$data['main_view'] = 'v_aboutus';
-// 	$this->load->view('v_template',$data);
-// }
-	// public function index(){
-	// 	$data['diri'] = $this->m_data->get_datadiri()->row();
-	//    $this->load->view('v_datadiri',$data);
-	// }
-	// public function daftarteman(){
-	// 	$data['diri'] = $this->m_data->get_datadiri()->row();
-	// 	$data['teman'] = $this->m_data->get_datateman()->result();
-	// 	$this->load->view('v_datateman',$data);
-	// }
+
 }

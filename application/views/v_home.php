@@ -10,14 +10,14 @@
                             <!-- <h2>Best Care & -->
                                 <!-- Best Solution</h2> -->
                             <!-- <p>Insert your child's data to get their immunization schedule </p> -->
-                            <h4>Insert your child's data to get their immunization schedule </h4>
+                            <h4><?php if($lg == "en") {echo "Insert your child's data to get their immunization schedule";} else { echo 'Masukkan data anak Anda untuk mendapatkan jadwal imunisasi mereka';} ?></h4>
                             
                             <br>
                             <br>
                             <form action="<?php echo base_url()?>index.php/home/schedule" method="get">
                                 <div class="form-row">
                                     <div class="form-group col-md-8">
-                                        <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" value="<?php if(!empty($name)){ echo $name;} ?>" required>
+                                        <input type="text" class="form-control" id="name" placeholder="<?php if($lg == "en") {echo 'Enter Name';} else { echo 'Masukkan Nama';} ?>" name="name" value="<?php if(!empty($name)){ echo $name;} ?>" required>
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -26,6 +26,7 @@
 
                                         
                                         <?php
+                                        if($lg == "en") {
                                         if($gender == "Male"){
                                         
                                             echo '<option value="">--Select Gender--</option><option value="Male" selected>Male</option> <option value="Female">Female</option>';
@@ -34,6 +35,16 @@
                                             echo '<option value="">--Select Gender--</option><option value="Male">Male</option> <option value="Female" selected>Female</option>';
                                         } else{
                                             echo '<option value="" selected>--Select Gender--</option><option value="Male">Male</option> <option value="Female" >Female</option>';
+                                        } } else{
+                                            if($gender == "Male"){
+                                        
+                                                echo '<option value="">--Pilih Jenis Kelamin--</option><option value="Male" selected>Laki-Laki</option> <option value="Female">Perempuan</option>';
+    
+                                            } else if ($gender == "Female"){
+                                                echo '<option value="">--Pilih Jenis Kelamin--</option><option value="Male">Laki-Laki</option> <option value="Female" selected>Perempuan</option>';
+                                            } else{
+                                                echo '<option value="" selected>--Pilih Jenis Kelamin--</option><option value="Male">Laki-Laki</option> <option value="Female" >Perempuan</option>';
+                                            }   
                                         }
                                         ?>
                                     </select>
@@ -41,7 +52,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6 label_home">
-                                     Date of Birth : <br>
+                                    <?php if($lg == "en") {echo 'Date of Birth';} else { echo 'Tanggal Lahir';} ?> : <br>
                                 </div>
                                 </div>
                                
@@ -55,14 +66,14 @@
                                 <!-- <p> Addition Size Calculation (Not Required) : </p> <br> -->
                                 <div class="form-row">
                                     <div class="form-group col-md-6 label_home">
-                                     Additional : <br>
+                                    <?php if($lg == "en") {echo 'Optional';} else { echo 'Opsional';} ?> : <br>
                                 </div>
                                 </div>
                                 <div class="form-row float">
                                     <div class="form-group col-md-8">
-                                        <input type="number" class="form-control" id="head" placeholder="Head (cm)" name="head" value="<?php if(!empty($head)){ echo $head;} ?>">
-                                        <input type="number" class="form-control" id="weight" placeholder="Weight (kg)" name="weight" value="<?php if(!empty($weight)){ echo $weight;} ?>">
-                                        <input type="number" class="form-control" id="height" placeholder="Height (cm)" name="height" value="<?php if(!empty($height)){ echo $height;} ?>">
+                                        <input type="number" class="form-control" id="head" placeholder="<?php if($lg == "en") {echo 'Head Size';} else { echo 'Ukuran Kepala';} ?> (cm)" name="head" value="<?php if(!empty($head)){ echo $head;} ?>">
+                                        <input type="number" class="form-control" id="weight" placeholder="<?php if($lg == "en") {echo 'Weight Size';} else { echo 'Berat Badan';} ?> (kg)" name="weight" value="<?php if(!empty($weight)){ echo $weight;} ?>">
+                                        <input type="number" class="form-control" id="height" placeholder="<?php if($lg == "en") {echo 'Height Size';} else { echo 'Tinggi Badan';} ?> (cm)" name="height" value="<?php if(!empty($height)){ echo $height;} ?>">
 
                                     </div>
                                     <!-- <div class="form-group col-md-4">
@@ -70,10 +81,10 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <input type="number" class="form-control" id="height" placeholder="Height (cm)" name="height" >
-                                    </div> -->
+                                    </div> --> 
                                 </div>
                                 <div class="regerv_btn" style="margin-bottom:20px">
-                                    <button type="submit" class="btn btn_2 btn_home">Get The Schedule</button>
+                                    <button type="submit" class="btn btn_2 btn_home"><?php if($lg == "en") {echo 'Get The Schedule';} else { echo 'Dapatkan Jadwal';} ?></button>
                                 </div>
 
                             </form>
@@ -97,7 +108,7 @@
             <div class="row justify-content-center">
                 <div class="col-xl-8">
                     <div class="section_tittle text-center">
-                        <h2>Articles</h2>
+                        <h2><?php if($lg == "en") {echo "Articles";} else { echo "Artikel";} ?></h2>
                     </div>
                 </div>
             </div>
@@ -110,10 +121,10 @@
                             <img src="<?php echo base_url()?>assets/img/<?php echo $r->img?>" class="card-img-top" alt="blog">
                             <div class="card-body">
                                 <a href="<?php echo base_url() ?>index.php/home/article/<?php echo $r->id_article?>">
-                                    <h5 class="card-title"> <?php echo $r->title?></h5>
+                                    <h5 class="card-title"><?php if($lg == "en") {echo $r->title_en;} else { echo $r->title;} ?></h5>
                                 </a>
                                 <ul>
-                                    <li> <span class="ti-user"></span> By <?php echo $r->written_by?></li>
+                                    <li> <span class="ti-user"></span><?php if($lg == "en") {echo "By";} else { echo "Oleh ";} ?> <?php echo $r->written_by?></li>
                                     
                                 </ul>
 
@@ -126,7 +137,7 @@
             <br>
             <center>
             <div class="regerv_btn">
-                                <a href="<?php echo base_url() ?>index.php/home/articles" class="btn_2">See More Articles</a>
+                                <a href="<?php echo base_url() ?>index.php/home/articles" class="btn_2"><?php if($lg == "en") {echo 'See More Articles';} else { echo 'Lihat Artikel Lainnya';} ?></a>
             </div>
 </center>
 
@@ -145,9 +156,13 @@
                 </div>
                 <div class="col-md-6 col-lg-5">
                     <div class="about_us_text">
-                        <h2>About us</h2>
-                        <p>Citrakara is a platform to help parents monitor their children’s wellbeing continuously using their devices at home. We aim to provide village health post-program (Posyandu) immunization care closer to the community. Citrakara allows parents to track their children’s immunization schedule and monitor their growth using head size, height, and weight. We aim to increase awareness on the importance of giving vaccines and the impact it has with sharing articles from trusted doctors in Indonesia </p>
-                        <a class="btn_2 " href="tel:0813-9939-9901">HOTLINE 0813-9939-9901</a>
+                        <h2><?php if($lg == "en") {echo 'About Us';} else { echo 'Tentang Kami';} ?></h2>
+                        <p><?php if($lg == "en") {echo 'Citrakara is a platform to help parents monitor their children’s wellbeing continuously using their devices at home. 
+                            We aim to provide village health post-program (Posyandu) immunization care closer to the community.
+                             Citrakara allows parents to track their children’s immunization schedule and monitor their growth using head size,
+                              height, and weight. We aim to increase awareness on the importance of giving
+                               vaccines and the impact it has with sharing articles from trusted doctors in Indonesia'; } else { echo 'Citrakara adalah platform untuk membantu orang tua memantau kesejahteraan anak-anak mereka secara terus-menerus menggunakan perangkat mereka di rumah. Kami bertujuan untuk memberikan layanan imunisasi posyandu kesehatan desa yang lebih dekat dengan masyarakat. Citrakara memungkinkan orang tua untuk melacak jadwal imunisasi anak-anak mereka dan memantau pertumbuhan mereka menggunakan ukuran kepala, tinggi, dan berat badan. Kami bertujuan untuk meningkatkan kesadaran tentang pentingnya memberikan vaksin dan dampaknya dengan berbagi artikel dari dokter tepercaya di Indonesia';} ?> </p>
+                        <a class="btn_2 " href="tel:0813-9939-9901"><?php if($lg == "en") {echo 'HOTLINE';} else { echo 'HUBUNGI';} ?> +62-813-9939-9901</a>
                         <div class="banner_item">
                             <div class="single_item">
                                 <img src="<?php echo base_url() ?>assets/img/icon/banner_1.svg" alt="">

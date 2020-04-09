@@ -7,22 +7,42 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
-                            <h2>Schedules</h2>
+                            <h2><?php if($lg == "en") {echo "Immunization Schedules";} else { echo "Jadwal Imunisasi";} ?></h2>
                             <?php 
-                            if(!empty($name) && !empty($gender) && $age_inmonth >=0) { 
+                            if(!empty($name) && !empty($gender) && $age_inmonth >=0) {
+                                if($lg == "en") {
+
                                 $a =$age_inmonth;
                                 if($a % 12 != 0 || $a == 0){
                                 $b= $a.' month old';
                                 } else{
                                 $b= ($a/12).' year old';
-                                } ?>
+                                }
+
+                                } else {
+                                    $a =$age_inmonth;
+                                    if($a % 12 != 0 || $a == 0){
+                                    $b= 'Usia '.$a.' bulan';
+                                    } else{
+                                    $b= 'Usia '.($a/12).' tahun';
+                                    }
+
+                                    if($gender == "Male"){
+                                        $gender_text = "Laki-Laki";
+                                    } else if($gender=="Female"){
+                                        $gender_text = "Perempuan";
+                                    } else{
+                                        $gender_text = "";
+                                    }
+                                } 
+                                 ?>
                             <center>
                                 
-                            <h3 style="color:white"><?php echo $name.', '.$gender.', <br>'.$b.'    '; ?>  
+                            <h3 style="color:white"><?php echo $name.', '.$gender_text.', <br>'.$b.'    '; ?>  
                             <a href="<?php echo base_url() ?>?name=<?=$name?>&gender=<?=$gender?>&date=<?=$born_date?>&head=<?php if(!empty($head_size)) { echo $head_size;}?>&weight=<?php if(!empty($weight_size)) { echo $weight_size;} ?>&height=<?php if(!empty($height_size)) { echo $height_size;} ?>"><i class="zmdi zmdi-edit" style="color:white"></i></a></h3>
                             </center>
                             <?php
-                        }
+                            }
                         ?>
                         </div>
                     </div>
@@ -64,7 +84,7 @@
 
                                     <div class="col-lg-<?php echo $sz?> col-sm-4">
                                         <div class="single_our_depertment">
-                                            <h3>Head Size</h3>
+                                            <h3><?php if($lg == "en") {echo "Head Size";} else { echo "Ukuran Kepala";} ?></h3>
                                             <h4><?php echo $head_size ?> cm</h4>
                     
                                             <h4><?php echo $head_status ?></h4>
@@ -77,7 +97,7 @@
 
 <div class="col-lg-<?php echo $sz?> col-sm-4">
     <div class="single_our_depertment">
-        <h3>Weight Size</h3>
+        <h3><?php if($lg == "en") {echo "Weight Size";} else { echo "Berat Badan";} ?></h3>
         <h4><?php echo $weight_size ?> kg</h4>
 
         <h4><?php echo $weight_status ?></h4>
@@ -92,7 +112,7 @@
 
 <div class="col-lg-<?php echo $sz?> col-sm-4">
     <div class="single_our_depertment">
-        <h3>Height Size</h3>
+        <h3><?php if($lg == "en") {echo "Height Size";} else { echo "Tinggi Badan";} ?></h3>
         <h4><?php echo $height_size ?> cm</h4>
 
         <h4><?php echo $height_status ?></h4>
@@ -355,11 +375,20 @@
                 <li>
                     <time class="cbp_tmtime"><span style="font-size:12pt"> 
                     <?php 
-                    $m =$a->age_inMonth;
-                    if($m % 12 != 0 || $m == 0){
-                    echo $m.' month old';
+                     if($lg == "en") {
+                        $m =$a->age_inMonth;
+                        if($m % 12 != 0 || $m == 0){
+                        echo $m.' month old';
+                        } else{
+                        echo ($m/12).' year old';
+                        }
                     } else{
-                    echo ($m/12).' year old';
+                        $m =$a->age_inMonth;
+                        if($m % 12 != 0 || $m == 0){
+                        echo 'Usia '. $m.' bulan';
+                        } else{
+                        echo 'Usia '.($m/12).' tahun';
+                        }
                     }
                     ?>
                 </span></time>
@@ -387,12 +416,13 @@
 </div>
                                     </section>
 
-                                    <section class="blog_part section_padding">
+               <!--::blog_part start::-->
+               <section class="blog_part section_padding">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-8">
                     <div class="section_tittle text-center">
-                        <h2>Articles</h2>
+                        <h2><?php if($lg == "en") {echo "Articles";} else { echo "Artikel";} ?></h2>
                     </div>
                 </div>
             </div>
@@ -405,10 +435,10 @@
                             <img src="<?php echo base_url()?>assets/img/<?php echo $r->img?>" class="card-img-top" alt="blog">
                             <div class="card-body">
                                 <a href="<?php echo base_url() ?>index.php/home/article/<?php echo $r->id_article?>">
-                                    <h5 class="card-title"> <?php echo $r->title?></h5>
+                                    <h5 class="card-title"><?php if($lg == "en") {echo $r->title_en;} else { echo $r->title;} ?></h5>
                                 </a>
                                 <ul>
-                                    <li> <span class="ti-user"></span> By <?php echo $r->written_by?></li>
+                                    <li> <span class="ti-user"></span><?php if($lg == "en") {echo "By";} else { echo "Oleh ";} ?> <?php echo $r->written_by?></li>
                                     
                                 </ul>
 
@@ -421,12 +451,14 @@
             <br>
             <center>
             <div class="regerv_btn">
-                                <a href="<?php echo base_url() ?>index.php/home/articles" class="btn_2">See More Articles</a>
+                                <a href="<?php echo base_url() ?>index.php/home/articles" class="btn_2"><?php if($lg == "en") {echo 'See More Articles';} else { echo 'Lihat Artikel Lainnya';} ?></a>
             </div>
 </center>
 
         </div>
     </section>
+    <!--::blog_part end::-->
+
 <script src="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	

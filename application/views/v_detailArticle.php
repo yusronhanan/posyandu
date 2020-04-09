@@ -4,11 +4,12 @@
          <div class="row">
             <div class="col-lg-8 posts-list">
                <div class="single-post">
-               <h2><?php echo $rs->title ?>
+               <h2><?php if($lg == "en") {echo $rs->title_en;} else { echo $rs->title;} ?>
+                  
                      </h2>
                      
                      <ul class="blog-info-link mt-3 mb-4">
-                        <li><i class="far fa-user"></i> By <?php echo $rs->written_by?></li>
+                        <li><i class="far fa-user"></i> <?php if($lg == "en") {echo "By";} else { echo "Oleh";} ?> <?php echo $rs->written_by?></li>
                         <li><?php 
                                     $d = strtotime($rs->date);
                                     echo date("d M Y", $d);
@@ -19,8 +20,8 @@
                   </div>
                   <div class="blog_details">
                   <p class="excert">
-
-                  <?php echo $rs->content?>
+                  <?php if($lg == "en") {echo $rs->content_en;} else { echo $rs->content;} ?>
+                  
                      </p> 
                      
                      
@@ -43,14 +44,14 @@
                      <form action="<?php echo base_url()?>index.php/home/articles" method="get">
                         <div class="form-group">
                            <div class="input-group mb-3">
-                              <input type="text" class="form-control" placeholder='Search Keyword'
-                                 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'" name="keyword">
+                              <input type="text" class="form-control" placeholder='<?php if($lg == "en") {echo "Search Keyword";} else { echo "Masukkan Kata Kunci";} ?>'
+                                 onfocus="this.placeholder = ''" onblur="this.placeholder = '<?php if($lg == 'en') {echo 'Search Keyword';} else { echo 'Masukkan Kata Kunci';} ?>'" name="keyword">
                               <div class="input-group-append">
                                  <button class="btn" type="submit"><i class="ti-search"></i></button>
                               </div>
                            </div>
                         </div>
-                        <button class="button rounded-0 primary-bg text-white w-100 btn_1" type="submit">Search</button>
+                        <button class="button rounded-0 primary-bg text-white w-100 btn_1" type="submit"><?php if($lg == "en") {echo "Search";} else { echo "Mencari";} ?></button>
                      </form>
                   </aside>
                </div>
