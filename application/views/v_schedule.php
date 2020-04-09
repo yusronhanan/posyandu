@@ -8,19 +8,22 @@
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
                             <h2>Schedules</h2>
-                            <?php if(!empty($name) && !empty($gender) && !empty($age_inmonth)) { 
+                            <?php 
+                            if(!empty($name) && !empty($gender) && $age_inmonth >=0) { 
                                 $a =$age_inmonth;
-                                if($a % 12 != 0){
-                                $b= 'Usia '.$a.' bulan';
+                                if($a % 12 != 0 || $a == 0){
+                                $b= $a.' month old';
                                 } else{
-                                $b= 'Usia '.($a/12).' tahun';
+                                $b= ($a/12).' year old';
                                 } ?>
                             <center>
                                 
-                            <h3 style="color:white"><?php echo $name.', '.$gender.' <br>'.$b.'    '; ?>  
-                            <a href="<?php echo base_url() ?>"><i class="zmdi zmdi-edit" style="color:white"></i></a></h3>
+                            <h3 style="color:white"><?php echo $name.', '.$gender.', <br>'.$b.'    '; ?>  
+                            <a href="<?php echo base_url() ?>?name=<?=$name?>&gender=<?=$gender?>&date=<?=$born_date?>&head=<?php if(!empty($head_size)) { echo $head_size;}?>&weight=<?php if(!empty($weight_size)) { echo $weight_size;} ?>&height=<?php if(!empty($height_size)) { echo $height_size;} ?>"><i class="zmdi zmdi-edit" style="color:white"></i></a></h3>
                             </center>
-                            <?php }?>
+                            <?php
+                        }
+                        ?>
                         </div>
                     </div>
                 </div>
@@ -65,6 +68,7 @@
                                             <h4><?php echo $head_size ?> cm</h4>
                     
                                             <h4><?php echo $head_status ?></h4>
+                                        <hr>
                                         </div>
                                     </div>
         <br>
@@ -77,12 +81,14 @@
         <h4><?php echo $weight_size ?> kg</h4>
 
         <h4><?php echo $weight_status ?></h4>
+        <hr>
+
     </div>
 </div>
 <br>
 
 <?php }?>
-<?php if(!empty($weight_size)){ ?>
+<?php if(!empty($height_size)){ ?>
 
 <div class="col-lg-<?php echo $sz?> col-sm-4">
     <div class="single_our_depertment">
@@ -90,6 +96,8 @@
         <h4><?php echo $height_size ?> cm</h4>
 
         <h4><?php echo $height_status ?></h4>
+        <hr>
+
     </div>
 </div>
 <br>
@@ -348,14 +356,14 @@
                     <time class="cbp_tmtime"><span style="font-size:12pt"> 
                     <?php 
                     $m =$a->age_inMonth;
-                    if($m % 12 != 0){
-                    echo 'Usia <br>'.$m.' bulan';
+                    if($m % 12 != 0 || $m == 0){
+                    echo $m.' month old';
                     } else{
-                    echo 'Usia <br>'.($m/12).' tahun';
+                    echo ($m/12).' year old';
                     }
                     ?>
                 </span></time>
-                    <div class="cbp_tmicon bg-info"></div>
+                    <div class="cbp_tmicon bg-info circle_schedule"></div>
                     <div class="cbp_tmlabel">
                         <?php                 
                         foreach ($rs as $r) { 
@@ -378,6 +386,47 @@
     </div>
 </div>
                                     </section>
+
+                                    <section class="blog_part section_padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8">
+                    <div class="section_tittle text-center">
+                        <h2>Articles</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            <?php foreach ($ar as $r) { ?>
+
+                <div class="col-sm-4">
+                    <div class="single-home-blog">
+                        <div class="card">
+                            <img src="<?php echo base_url()?>assets/img/<?php echo $r->img?>" class="card-img-top" alt="blog">
+                            <div class="card-body">
+                                <a href="<?php echo base_url() ?>index.php/home/article/<?php echo $r->id_article?>">
+                                    <h5 class="card-title"> <?php echo $r->title?></h5>
+                                </a>
+                                <ul>
+                                    <li> <span class="ti-user"></span> By <?php echo $r->written_by?></li>
+                                    
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+            </div>
+            <br>
+            <center>
+            <div class="regerv_btn">
+                                <a href="<?php echo base_url() ?>index.php/home/articles" class="btn_2">See More Articles</a>
+            </div>
+</center>
+
+        </div>
+    </section>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	

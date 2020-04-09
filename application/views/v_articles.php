@@ -43,8 +43,11 @@
                                 
                             </div>
                         </article>
-                       <?php } ?>
-
+                       <?php }
+                       echo '<div class="pagination">';
+                       echo $this->pagination->create_links();
+                       echo '</div>'; ?>
+                        
                        
                         <!-- <nav class="blog-pagination justify-content-center d-flex">
                             <ul class="pagination">

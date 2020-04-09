@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?php echo $title ?></title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link rel="icon" href="<?php echo base_url() ?>assets/img/ASSET 3 - LOGO.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/bootstrap.min.css">
@@ -29,7 +30,7 @@
 
 <body>
     <!--::header part start::-->
-    <header class="main_menu home_menu">
+    <header class="main_menu home_menu menu_fixed animated fadeInDown">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12">
@@ -103,7 +104,7 @@
                 <div class="row justify-content-between">
                     <div class="col-xl-2 col-md-4 col-sm-6 single-footer-widget">
                         <a href="<?php echo base_url() ?>" class="footer_logo"> <img src="<?php echo base_url() ?>assets/img/ASSET 3 - LOGO.png" alt="logo" width="40px" height = "40px"> </a>
-                        <p>E-Posyandu <br> We serve by love. </p>
+                        <p>Citrakara <br> We serve by love. </p>
                         <div class="social_logo">
                             <!-- <a href="<?php echo base_url() ?>assets/#"><i class="ti-facebook"></i></a> -->
                             <!-- <a href="<?php echo base_url() ?>assets/#"> <i class="ti-twitter"></i> </a> -->

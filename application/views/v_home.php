@@ -1,7 +1,7 @@
 
     <!-- banner part start-->
     <section class="banner_part">
-        <div class="container">
+        <div class="container div_home">
             <div class="row align-items-center">
                 <div class="col-lg-5 col-xl-5">
                     <div class="banner_text">
@@ -17,40 +17,63 @@
                             <form action="<?php echo base_url()?>index.php/home/schedule" method="get">
                                 <div class="form-row">
                                     <div class="form-group col-md-8">
-                                        <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" required>
+                                        <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" value="<?php if(!empty($name)){ echo $name;} ?>" required>
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                <div class="form-group col-md-8">
+                                <div class="form-group col-md-12">
                                     <select  id="Select" name="gender" required>
-                                        <option value="" selected>--Select Gender--</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
+
+                                        
+                                        <?php
+                                        if($gender == "Male"){
+                                        
+                                            echo '<option value="">--Select Gender--</option><option value="Male" selected>Male</option> <option value="Female">Female</option>';
+
+                                        } else if ($gender == "Female"){
+                                            echo '<option value="">--Select Gender--</option><option value="Male">Male</option> <option value="Female" selected>Female</option>';
+                                        } else{
+                                            echo '<option value="" selected>--Select Gender--</option><option value="Male">Male</option> <option value="Female" >Female</option>';
+                                        }
+                                        ?>
                                     </select>
                                 </div>
                                 </div>
-                                <p> Date of Birth : </p> <br>
                                 <div class="form-row">
+                                    <div class="form-group col-md-6 label_home">
+                                     Date of Birth : <br>
+                                </div>
+                                </div>
+                               
+                                <div class="form-row float">
                                     <div class="form-group col-md-8">
-                                        <input type="date" class="form-control" id="date" name="date"  required>
+                                        <input type="date" class="form-control" id="date" name="date"  required value="<?php if(!empty($date)){ echo $date;} ?>">
+                                    
                                     </div>
                                 </div>
                                 
                                 <!-- <p> Addition Size Calculation (Not Required) : </p> <br> -->
-
                                 <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <input type="number" class="form-control" id="head" placeholder="Head (cm)" name="head" >
+                                    <div class="form-group col-md-6 label_home">
+                                     Additional : <br>
+                                </div>
+                                </div>
+                                <div class="form-row float">
+                                    <div class="form-group col-md-8">
+                                        <input type="number" class="form-control" id="head" placeholder="Head (cm)" name="head" value="<?php if(!empty($head)){ echo $head;} ?>">
+                                        <input type="number" class="form-control" id="weight" placeholder="Weight (kg)" name="weight" value="<?php if(!empty($weight)){ echo $weight;} ?>">
+                                        <input type="number" class="form-control" id="height" placeholder="Height (cm)" name="height" value="<?php if(!empty($height)){ echo $height;} ?>">
+
                                     </div>
-                                    <div class="form-group col-md-4">
+                                    <!-- <div class="form-group col-md-4">
                                         <input type="number" class="form-control" id="weight" placeholder="Weight (kg)" name="weight" >
                                     </div>
                                     <div class="form-group col-md-4">
                                         <input type="number" class="form-control" id="height" placeholder="Height (cm)" name="height" >
-                                    </div>
+                                    </div> -->
                                 </div>
-                                <div class="regerv_btn">
-                                    <button type="submit" class="btn_2">Get The Schedule</button>
+                                <div class="regerv_btn" style="margin-bottom:20px">
+                                    <button type="submit" class="btn btn_2 btn_home">Get The Schedule</button>
                                 </div>
 
                             </form>
@@ -123,8 +146,7 @@
                 <div class="col-md-6 col-lg-5">
                     <div class="about_us_text">
                         <h2>About us</h2>
-                        <p>We are E-Posyandu will give the Best Service and the Best Solution.
-                            We provide the immunization's schedule, articles, and calculation according to head size, weight size, and height size </p>
+                        <p>Citrakara is a platform to help parents monitor their children’s wellbeing continuously using their devices at home. We aim to provide village health post-program (Posyandu) immunization care closer to the community. Citrakara allows parents to track their children’s immunization schedule and monitor their growth using head size, height, and weight. We aim to increase awareness on the importance of giving vaccines and the impact it has with sharing articles from trusted doctors in Indonesia </p>
                         <a class="btn_2 " href="tel:0813-9939-9901">HOTLINE 0813-9939-9901</a>
                         <div class="banner_item">
                             <div class="single_item">
