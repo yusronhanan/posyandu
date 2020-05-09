@@ -7,7 +7,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
-                            <h2><?php if($lg == "en") {echo "Immunization Schedules";} else { echo "Jadwal Imunisasi";} ?></h2>
+                            <h2><?php if($lg == "en") {echo "Schedules";} else { echo "Jadwal Imunisasi";} ?></h2>
                             <?php 
                             if(!empty($name) && !empty($gender) && $age_inmonth >=0) {
                                 if($lg == "en") {
