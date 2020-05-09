@@ -18,6 +18,7 @@
                                 } else{
                                 $b= ($a/12).' year old';
                                 }
+                                $gender_text = $gender;
 
                                 } else {
                                     $a =$age_inmonth;
